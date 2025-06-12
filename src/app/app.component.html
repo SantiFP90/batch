@@ -74,6 +74,7 @@
                 width="100%"
                 class="rotate"
                 style="position: absolute; top: 0; left: 0; z-index: 2"
+                id="A"
               />
               <img
                 src="../assets/map-B.png"
@@ -81,6 +82,7 @@
                 width="100%"
                 class="rotate"
                 style="position: absolute; top: 0; left: 0; z-index: 3"
+                id="B"
               />
               <img
                 src="../assets/map-C.png"
@@ -88,6 +90,7 @@
                 width="100%"
                 class="rotate"
                 style="position: absolute; top: 0; left: 0; z-index: 4"
+                id="C"
               />
               <img
                 src="../assets/map-D.png"
@@ -95,6 +98,7 @@
                 width="100%"
                 class="rotate"
                 style="position: absolute; top: 0; left: 0; z-index: 5"
+                id="D"
               />
               <img
                 src="../assets/map-E.png"
@@ -102,6 +106,7 @@
                 width="100%"
                 class="rotate"
                 style="position: absolute; top: 0; left: 0; z-index: 6"
+                id="E"
               />
               <img
                 src="../assets/map-F.png"
@@ -109,6 +114,7 @@
                 width="100%"
                 class="rotate"
                 style="position: absolute; top: 0; left: 0; z-index: 7"
+                id="F"
               />
               <img
                 src="../assets/map-G.png"
@@ -116,6 +122,7 @@
                 width="100%"
                 class="rotate"
                 style="position: absolute; top: 0; left: 0; z-index: 8"
+                id="G"
               />
               <img
                 src="../assets/map-H.png"
@@ -123,6 +130,7 @@
                 width="100%"
                 class="rotate"
                 style="position: absolute; top: 0; left: 0; z-index: 9"
+                id="H"
               />
             </div>
           </div>
@@ -193,6 +201,7 @@
                       label="Ver Detalles"
                       icon="pi pi-eye"
                       styleClass="p-button-success w-full p-2"
+                      (onClick)="paintSection(section.id)"
                     >
                     </p-button>
                   </div>

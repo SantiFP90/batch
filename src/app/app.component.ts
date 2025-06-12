@@ -159,4 +159,6 @@ export class AppComponent {
       status: 'limited',
     },
   ];
+
+  paintSection(id: string) {}
 }
