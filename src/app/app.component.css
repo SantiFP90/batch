@@ -1,0 +1,7 @@
+.rotate {
+  transform: rotate(360deg); /* podés usar 180deg, 270deg, etc. */
+}
+
+.map-div {
+  margin-top: -10rem !important;
+}
