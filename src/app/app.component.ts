@@ -1,5 +1,5 @@
 // app.component.ts
-import { Component } from '@angular/core';
+import { Component, ElementRef, viewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { trigger, transition, style, animate } from '@angular/animations';
 
@@ -12,6 +12,7 @@ import { DividerModule } from 'primeng/divider';
 import { TagModule } from 'primeng/tag';
 import { TooltipModule } from 'primeng/tooltip';
 import { MenubarModule } from 'primeng/menubar';
+import { HttpClient } from '@angular/common/http';
 
 interface LotSection {
   id: string;
@@ -64,6 +65,8 @@ interface SectionInfo {
   ],
 })
 export class AppComponent {
+  batchs = viewChild<ElementRef>('batchs');
+
   selectedSection: LotSection | null = null;
   displayModal: boolean = false;
 
@@ -158,7 +161,106 @@ export class AppComponent {
       coordinates: { x: 45, y: 25 },
       status: 'limited',
     },
+    {
+      id: 'F',
+      name: 'Sección Ejecutiva',
+      description: 'Lotes premium con las mejores vistas y ubicación',
+      totalLots: 29,
+      availableLots: 12,
+      minSize: 1200,
+      maxSize: 1800,
+      priceRange: '200-280',
+      features: [
+        'Lotes premium',
+        'Vista exclusiva',
+        'Mayor privacidad',
+        'Acceso VIP',
+      ],
+      coordinates: { x: 45, y: 25 },
+      status: 'limited',
+    },
+    {
+      id: 'G',
+      name: 'Sección Ejecutiva',
+      description: 'Lotes premium con las mejores vistas y ubicación',
+      totalLots: 29,
+      availableLots: 12,
+      minSize: 1200,
+      maxSize: 1800,
+      priceRange: '200-280',
+      features: [
+        'Lotes premium',
+        'Vista exclusiva',
+        'Mayor privacidad',
+        'Acceso VIP',
+      ],
+      coordinates: { x: 45, y: 25 },
+      status: 'limited',
+    },
+    {
+      id: 'H',
+      name: 'Sección Ejecutiva',
+      description: 'Lotes premium con las mejores vistas y ubicación',
+      totalLots: 29,
+      availableLots: 12,
+      minSize: 1200,
+      maxSize: 1800,
+      priceRange: '200-280',
+      features: [
+        'Lotes premium',
+        'Vista exclusiva',
+        'Mayor privacidad',
+        'Acceso VIP',
+      ],
+      coordinates: { x: 45, y: 25 },
+      status: 'limited',
+    },
   ];
 
-  paintSection(id: string) {}
+  visibleLayers: { [key: string]: boolean } = {
+    A: false,
+    B: false,
+    C: false,
+    D: false,
+    E: false,
+    F: false,
+    G: false,
+    H: false,
+  };
+
+  currentVisibleLayer: string | null = null;
+
+  constructor(private http: HttpClient) {}
+
+  goToBatchs() {
+    this.batchs()?.nativeElement.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  paintSection(layerId: string) {
+    if (this.visibleLayers[layerId]) {
+      this.visibleLayers[layerId] = false;
+      this.currentVisibleLayer = null;
+      return;
+    }
+
+    Object.keys(this.visibleLayers).forEach((key) => {
+      this.visibleLayers[key] = false;
+    });
+
+    this.visibleLayers[layerId] = true;
+    this.currentVisibleLayer = layerId;
+  }
+
+  downloadPdf() {
+    let url: string = '/assets/mapita.pf';
+    this.http.get(url, { responseType: 'arraybuffer' }).subscribe((data) => {
+      const blob = new Blob([data], { type: 'pdf' });
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.download = 'Loteo.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
+  }
 }

@@ -1,9 +1,10 @@
-<div>
-  <section class="hero-gradient text-white py-8">
-    <div class="container mx-auto px-4 text-center">
-      <h2 class="text-6xl font-bold mb-4">
+<div class="fadein animation-duration-1000">
+  <section class="hero-gradient text-white">
+    <div class="container mx-auto p-5 text-center">
+      <h2 class="text-6xl font-bold m-0">
         Tu hogar en el <span class="text-yellow-300">paraíso</span>
       </h2>
+      <img src="../assets/logo.png" alt="Logo" width="10%" />
       <p class="text-xl mb-6 max-w-4xl mx-auto opacity-90">
         Descubre lotes exclusivos en nuestro desarrollo residencial junto al
         campo de golf. Cada terreno diseñado para ofrecerte la tranquilidad y
@@ -18,14 +19,21 @@
           border: '2px solid white',
           color: 'white'
         }"
+        (onClick)="goToBatchs()"
       >
-        <!-- (onClick)="scrollToMap()" -->
       </p-button>
     </div>
   </section>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+    <path
+      fill="#15803d"
+      fill-opacity="1"
+      d="M0,128L48,122.7C96,117,192,107,288,96C384,85,480,75,576,90.7C672,107,768,149,864,186.7C960,224,1056,256,1152,229.3C1248,203,1344,117,1392,74.7L1440,32L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"
+    ></path>
+  </svg>
 
-  <section class="py-6 bg-white border-bottom-1 surface-border">
-    <div class="container mx-auto px-4">
+  <section class="p-2 bg-white border-bottom-1 surface-border -mt-8">
+    <div class="container mx-auto p-1">
       <div class="grid">
         <div class="col-12 md:col-3 text-center">
           <div class="text-4xl font-bold text-green-600">320+</div>
@@ -47,7 +55,7 @@
     </div>
   </section>
 
-  <section id="mapa" class="mt-3 bg-gray-50">
+  <section #batchs class="mt-3 bg-gray-50">
     <div>
       <div class="grid m-0">
         <div class="col-6">
@@ -59,90 +67,113 @@
               ¡Ve las secciones disponibles de los lotes!
             </p>
           </div>
-          <div class="flex justify-content-center">
+          <div
+            class="flex flex-column justify-content-center align-items-center gap-3"
+          >
             <div style="position: relative; width: 80%; height: auto">
               <img
                 src="../assets/map.png"
                 alt="mapa"
                 width="100%"
-                class="rotate"
+                class="rotate fadein animation-duration-1000"
                 style="position: relative; z-index: 1"
               />
               <img
                 src="../assets/map-A.png"
                 alt="Imagen 2"
                 width="100%"
-                class="rotate"
+                class="rotate fadein animation-duration-1000"
                 style="position: absolute; top: 0; left: 0; z-index: 2"
+                [style.display]="visibleLayers['A'] ? 'block' : 'none'"
                 id="A"
               />
               <img
                 src="../assets/map-B.png"
                 alt="Imagen 3"
                 width="100%"
-                class="rotate"
+                class="rotate fadein animation-duration-1000"
                 style="position: absolute; top: 0; left: 0; z-index: 3"
+                [style.display]="visibleLayers['B'] ? 'block' : 'none'"
                 id="B"
               />
               <img
                 src="../assets/map-C.png"
                 alt="Imagen 4"
                 width="100%"
-                class="rotate"
+                class="rotate fadein animation-duration-1000"
                 style="position: absolute; top: 0; left: 0; z-index: 4"
+                [style.display]="visibleLayers['C'] ? 'block' : 'none'"
                 id="C"
               />
               <img
                 src="../assets/map-D.png"
                 alt="Imagen 5"
                 width="100%"
-                class="rotate"
+                class="rotate fadein animation-duration-1000"
                 style="position: absolute; top: 0; left: 0; z-index: 5"
+                [style.display]="visibleLayers['D'] ? 'block' : 'none'"
                 id="D"
               />
               <img
                 src="../assets/map-E.png"
                 alt="Imagen 6"
                 width="100%"
-                class="rotate"
+                class="rotate fadein animation-duration-1000"
                 style="position: absolute; top: 0; left: 0; z-index: 6"
+                [style.display]="visibleLayers['E'] ? 'block' : 'none'"
                 id="E"
               />
               <img
                 src="../assets/map-F.png"
                 alt="Imagen 7"
                 width="100%"
-                class="rotate"
+                class="rotate fadein animation-duration-1000"
                 style="position: absolute; top: 0; left: 0; z-index: 7"
+                [style.display]="visibleLayers['F'] ? 'block' : 'none'"
                 id="F"
               />
               <img
                 src="../assets/map-G.png"
                 alt="Imagen 8"
                 width="100%"
-                class="rotate"
+                class="rotate fadein animation-duration-1000"
                 style="position: absolute; top: 0; left: 0; z-index: 8"
+                [style.display]="visibleLayers['G'] ? 'block' : 'none'"
                 id="G"
               />
               <img
                 src="../assets/map-H.png"
                 alt="Imagen 8"
                 width="100%"
-                class="rotate"
+                class="rotate fadein animation-duration-1000"
                 style="position: absolute; top: 0; left: 0; z-index: 9"
+                [style.display]="visibleLayers['H'] ? 'block' : 'none'"
                 id="H"
               />
+            </div>
+            <div>
+              <p-button
+                label="Descargar mapa"
+                icon="pi pi-download"
+                styleClass="p-button-lg mr-3 p-2"
+                [style]="{ background: '#25D366', border: 'none' }"
+                (onClick)="downloadPdf()"
+              >
+              </p-button>
             </div>
           </div>
         </div>
         <div class="col-6">
           <div class="container mx-auto px-4">
             <div class="text-center mb-6">
-              <h3 class="text-5xl font-bold text-gray-800 mb-3">
+              <h3 class="text-5xl font-bold text-gray-800 mb-2">
                 Nuestras Secciones
               </h3>
               <p class="text-lg text-gray-600">
-                Encuentra el lote perfecto para tu nueva casa
+                Encuentra el lote perfecto para tu nueva casa.
+              </p>
+              <p class="text-lg text-gray-600 m-0 p-0">
+                Selecciona una sección para visualizarla en el mapa.
               </p>
             </div>
 
@@ -214,89 +245,20 @@
     </div>
   </section>
 
-  <!-- Sections Overview -->
-  <section id="secciones">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-6">
-        <h3 class="text-5xl font-bold text-gray-800 mb-3">
-          Nuestras Secciones
-        </h3>
-        <p class="text-lg text-gray-600">
-          Encuentra el lote perfecto para tu nueva casa
-        </p>
-      </div>
+  <!-- Gallery ?¿ -->
+  <section id="secciones"></section>
 
-      <div class="grid">
-        <div
-          *ngFor="let section of sections"
-          class="col-12 md:col-6 lg:col-3 mb-4"
-        >
-          <p-card class="card-hover h-full">
-            <ng-template pTemplate="header">
-              <div class="text-center p-4 bg-green-50">
-                <p-badge
-                  [value]="section.id"
-                  severity="success"
-                  size="large"
-                  [style]="{
-                    'font-size': '1.5rem'
-                  }"
-                >
-                </p-badge>
-                <h4 class="text-xl font-semibold text-gray-800 mt-3 mb-0">
-                  {{ section.name }}
-                </h4>
-              </div>
-            </ng-template>
-
-            <div class="p-3">
-              <div class="grid text-sm mb-3">
-                <div class="col-6">
-                  <strong>Total:</strong> {{ section.totalLots }}
-                </div>
-                <div class="col-6">
-                  <strong>Disponibles: </strong>
-                  <span class="text-green-600 font-semibold">{{
-                    section.availableLots
-                  }}</span>
-                </div>
-                <div class="col-12 mt-2">
-                  <strong>Desde:</strong> {{ section.minSize }}m²
-                </div>
-              </div>
-
-              <p-tag
-                [value]="
-                  section.status === 'available'
-                    ? 'Disponible'
-                    : section.status === 'limited'
-                    ? 'Pocas unidades'
-                    : 'Agotado'
-                "
-                class="mb-3"
-              >
-              </p-tag>
-            </div>
-
-            <ng-template pTemplate="footer">
-              <div class="flex justify-content-center w-full">
-                <p-button
-                  label="Ver Detalles"
-                  icon="pi pi-eye"
-                  styleClass="p-button-success w-full p-2 m-2"
-                >
-                </p-button>
-              </div>
-            </ng-template>
-          </p-card>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contacto" class="py-8 hero-gradient text-white">
+  <!-- Contact -->
+  <svg class="-mb-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+    <path
+      fill="#15803d"
+      fill-opacity="1"
+      d="M0,160L80,170.7C160,181,320,203,480,213.3C640,224,800,224,960,208C1120,192,1280,160,1360,144L1440,128L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"
+    ></path>
+  </svg>
+  <section id="contacto" class="hero-gradient text-white pb-3 -mt-5">
     <div class="container mx-auto px-4 text-center">
+      <img src="../assets/logo.png" alt="Logo" width="10%" />
       <h3 class="text-4xl font-bold mb-4">
         ¿Listo para encontrar tu lote ideal?
       </h3>
